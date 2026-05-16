@@ -26,14 +26,16 @@ namespace AayurSatva.Controllers
                 .FirstOrDefaultAsync(u => (u.UserName == request.Username || u.Email == request.Username || u.Mobile == request.Username) && u.Password == request.Password);
 
             if (user == null)
-                return Unauthorized(new { message = "Invalid credentials!" });
+                return Ok(new { status = false, message = "Invalid credentials!" });
 
             if (!user.IsActive)
-                return Unauthorized(new { message = "Account is not active!" });
+                return Ok(new { status = false, message = "Account is not active!" });
 
             var companies = await _context.Companies.ToListAsync();
+            var years = await _context.Years.ToListAsync();
             
             return Ok(new { 
+                status = true,
                 message = "Login successful!", 
                 userId = $"USER{user.UserId:D2}", 
                 role = user.Role,
@@ -42,6 +44,10 @@ namespace AayurSatva.Controllers
                 company = companies.Select(c => new {
                     coId = $"C{c.CoId:D3}",
                     coName = c.CoName
+                }),
+                year = years.Select(y => new {
+                    yearId = $"Y{y.YearId:D3}",
+                    yearName = y.YearName
                 })
             });
         }
@@ -54,7 +60,7 @@ namespace AayurSatva.Controllers
                 .FirstOrDefaultAsync(u => u.UserName == request.Username);
 
             if (user == null)
-                return NotFound(new { message = "User not found!" });
+                return Ok(new { status = false, message = "User not found!" });
 
             var coId = 0;
             if (!string.IsNullOrEmpty(request.CoId))
@@ -89,6 +95,7 @@ namespace AayurSatva.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
             return Ok(new {
+                status = true,
                 databaseName = "AayurSatva",
                 cocode = coId,
                 cid = coId,
@@ -127,7 +134,7 @@ namespace AayurSatva.Controllers
 
                 if (emailMatch && mobileMatch)
                 {
-                    return BadRequest(new { message = "email & mobile is already exists." });
+                    return Ok(new { status = false, message = "email & mobile is already exists." });
                 }
 
                 var errors = new List<string>();
@@ -136,7 +143,7 @@ namespace AayurSatva.Controllers
                 if (emailMatch) errors.Add("email already exists.");
                 if (mobileMatch) errors.Add("mobileno already exists.");
 
-                return BadRequest(new { message = string.Join(" ", errors) });
+                return Ok(new { status = false, message = string.Join(" ", errors) });
             }
 
             var user = new User
@@ -154,7 +161,7 @@ namespace AayurSatva.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Registered successfully!", userId = user.UserId });
+            return Ok(new { status = true, message = "Registered successfully!", userId = user.UserId });
         }
 
         // POST: api/Auth/reset-password
@@ -165,12 +172,12 @@ namespace AayurSatva.Controllers
                 .FirstOrDefaultAsync(u => u.UserName == request.UserName);
 
             if (user == null)
-                return NotFound(new { message = "User not found!" });
+                return Ok(new { status = false, message = "User not found!" });
 
             user.Password = request.Password;
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Password reset successful!" });
+            return Ok(new { status = true, message = "Password reset successful!" });
         }
 
         // GET: api/Auth/company
