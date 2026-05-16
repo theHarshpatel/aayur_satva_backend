@@ -6,18 +6,18 @@ using AayurSatva.Models;
 namespace AayurSatva.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class MenuManagerController : ControllerBase
+    [Route("api/Menu")]
+    public class MenuController : ControllerBase
     {
         private readonly AayurSatvaDbContext _context;
 
-        public MenuManagerController(AayurSatvaDbContext context)
+        public MenuController(AayurSatvaDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/MenuManager
-        [HttpGet]
+        // GET: api/Menu/getallmenu
+        [HttpGet("getallmenu")]
         public async Task<IActionResult> GetMenus()
         {
             var menus = await _context.MenuManagers.ToListAsync();
@@ -36,8 +36,8 @@ namespace AayurSatva.Controllers
             }));
         }
 
-        // POST: api/MenuManager
-        [HttpPost]
+        // POST: api/Menu/Addmenu
+        [HttpPost("Addmenu")]
         public async Task<IActionResult> AddUpdateMenu([FromBody] AddMenuRequest request)
         {
             int id = 0;
@@ -96,8 +96,8 @@ namespace AayurSatva.Controllers
             });
         }
 
-        // POST: api/MenuManager/Delete
-        [HttpPost("Delete")]
+        // POST: api/Menu/Deletemenu
+        [HttpPost("Deletemenu")]
         public async Task<IActionResult> DeleteMenu([FromBody] DeleteMenuRequest request)
         {
             var idStr = new string(request.MenuId.Where(char.IsDigit).ToArray());

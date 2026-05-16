@@ -16,8 +16,8 @@ namespace AayurSatva.Controllers
             _context = context;
         }
 
-        // GET: api/Medicine
-        [HttpGet]
+        // GET: api/Medicine/GetMedicine
+        [HttpGet("GetMedicine")]
         public async Task<IActionResult> GetMedicines([FromQuery] string? coId, [FromQuery] string? yearId)
         {
             var query = _context.Medicines.AsQueryable();
@@ -42,8 +42,8 @@ namespace AayurSatva.Controllers
             }));
         }
 
-        // POST: api/Medicine
-        [HttpPost]
+        // POST: api/Medicine/AddMedicine
+        [HttpPost("AddMedicine")]
         public async Task<IActionResult> AddUpdateMedicine([FromBody] AddMedicineRequest request)
         {
             var medId = 0;
@@ -90,8 +90,8 @@ namespace AayurSatva.Controllers
             });
         }
 
-        // POST: api/Medicine/Delete
-        [HttpPost("Delete")]
+        // POST: api/Medicine/medicineDelete
+        [HttpPost("medicineDelete")]
         public async Task<IActionResult> DeleteMedicine([FromBody] DeleteMedicineRequest request)
         {
             var idStr = new string(request.Id.Where(char.IsDigit).ToArray());

@@ -86,64 +86,6 @@
 					}
 				},
 				{
-					"name": "Add/Update User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"\",\n    \"userName\": \"testuser\",\n    \"fullName\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"mobile\": \"1234567890\",\n    \"password\": \"password123\",\n    \"bloodGroup\": \"B+\",\n    \"role\": 2,\n    \"address\": \"Test Address\",\n    \"pincode\": \"123456\",\n    \"state\": \"Test State\",\n    \"isActive\": true,\n    \"rights\": false\n}\n/*\n  Validation Errors:\n  - username already exists.\n  - fullname already exists.\n  - email already exists.\n  - mobileno already exists.\n  - email & mobile is already exists.\n*/",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{aayursatva}}/User",
-							"host": [
-								"{{aayursatva}}"
-							],
-							"path": [
-								"User"
-							]
-						}
-					}
-				},
-				{
-					"name": "Get User Detail",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{aayursatva}}/User",
-							"host": [
-								"{{aayursatva}}"
-							],
-							"path": [
-								"User"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "",
-									"description": "User ID (e.g. USER01)"
-								},
-								{
-									"key": "userid",
-									"value": "",
-									"description": "User ID lowercase (e.g. USER01)"
-								},
-								{
-									"key": "ruserId",
-									"value": "",
-									"description": "Role User ID (e.g. DOC01, PET01)"
-								}
-							]
-						}
-					}
-				},
-				{
 					"name": "Reset Password",
 					"request": {
 						"method": "POST",
@@ -192,49 +134,6 @@
 									"key": "yearid",
 									"value": "1"
 								}
-							]
-						}
-					}
-				},
-				{
-					"name": "Get Unauthorize Users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{aayursatva}}/Auth/unauthorize-user",
-							"host": [
-								"{{aayursatva}}"
-							],
-							"path": [
-								"Auth",
-								"unauthorize-user"
-							]
-						}
-					}
-				},
-				{
-					"name": "Authorize User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": 1,\n    \"isAccess\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{aayursatva}}/Auth/authorize",
-							"host": [
-								"{{aayursatva}}"
-							],
-							"path": [
-								"Auth",
-								"authorize"
 							]
 						}
 					}
@@ -412,11 +311,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/AddMaster",
+							"raw": "{{aayursatva}}/Master/AddMaster",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
+								"Master",
 								"AddMaster"
 							]
 						}
@@ -437,11 +337,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/DeleteMaster",
+							"raw": "{{aayursatva}}/Master/DeleteMaster",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
+								"Master",
 								"DeleteMaster"
 							]
 						}
@@ -458,12 +359,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{aayursatva}}/Medicine",
+							"raw": "{{aayursatva}}/Medicine/GetMedicine",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"Medicine"
+								"Medicine",
+								"GetMedicine"
 							]
 						}
 					}
@@ -483,12 +385,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/Medicine",
+							"raw": "{{aayursatva}}/Medicine/AddMedicine",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"Medicine"
+								"Medicine",
+								"AddMedicine"
 							]
 						}
 					}
@@ -508,13 +411,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/Medicine/Delete",
+							"raw": "{{aayursatva}}/Medicine/medicineDelete",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
 								"Medicine",
-								"Delete"
+								"medicineDelete"
 							]
 						}
 					}
@@ -530,12 +433,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{aayursatva}}/Billing",
+							"raw": "{{aayursatva}}/Billing/GetAllBill",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"Billing"
+								"Billing",
+								"GetAllBill"
 							]
 						}
 					}
@@ -573,12 +477,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/Billing",
+							"raw": "{{aayursatva}}/Billing/AddBill",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"Billing"
+								"Billing",
+								"AddBill"
 							]
 						}
 					}
@@ -598,13 +503,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/Billing/Delete",
+							"raw": "{{aayursatva}}/Billing/DeleteBill",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
 								"Billing",
-								"Delete"
+								"DeleteBill"
 							]
 						}
 					}
@@ -620,12 +525,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{aayursatva}}/Appointment",
+							"raw": "{{aayursatva}}/Appointment/GetAllAppointment",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"Appointment"
+								"Appointment",
+								"GetAllAppointment"
 							]
 						}
 					}
@@ -645,12 +551,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/Appointment",
+							"raw": "{{aayursatva}}/Appointment/AddAppointment",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"Appointment"
+								"Appointment",
+								"AddAppointment"
 							]
 						}
 					}
@@ -670,13 +577,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/Appointment/Delete",
+							"raw": "{{aayursatva}}/Appointment/DeleteAppointment",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
 								"Appointment",
-								"Delete"
+								"DeleteAppointment"
 							]
 						}
 					}
@@ -692,29 +599,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{aayursatva}}/User",
-							"host": [
-								"{{aayursatva}}"
-							],
-							"path": [
-								"User"
-							]
-						}
-					}
-				},
-				{
-					"name": "Get User By ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{aayursatva}}/User/USER01",
+							"raw": "{{aayursatva}}/User/GetAllUsers",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
 								"User",
-								"USER01"
+								"GetAllUsers"
 							]
 						}
 					}
@@ -726,7 +617,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"\",\n    \"userName\": \"newuser\",\n    \"email\": \"user@example.com\",\n    \"mobile\": \"1234567890\",\n    \"password\": \"password123\",\n    \"bloodGroup\": \"O+\",\n    \"role\": 2,\n    \"address\": \"123 Street\",\n    \"pinon\": \"123456\",\n    \"state\": \"Gujarat\",\n    \"isActive\": true,\n    \"rights\": true\n}",
+							"raw": "{\n    \"userId\": \"\",\n    \"userName\": \"testuser\",\n    \"fullName\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"mobile\": \"1234567890\",\n    \"password\": \"password123\",\n    \"bloodGroup\": \"B+\",\n    \"role\": 2,\n    \"address\": \"Test Address\",\n    \"pincode\": \"123456\",\n    \"state\": \"Test State\",\n    \"isActive\": true,\n    \"rights\": false\n}\n/*\n  Validation Errors:\n  - username already exists.\n  - fullname already exists.\n  - email already exists.\n  - mobileno already exists.\n  - email & mobile is already exists.\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -734,12 +625,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/User",
+							"raw": "{{aayursatva}}/User/AddUser",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
-								"User"
+								"User",
+								"AddUser"
 							]
 						}
 					}
@@ -759,13 +651,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{aayursatva}}/User/Delete",
+							"raw": "{{aayursatva}}/User/DeleteUser",
 							"host": [
 								"{{aayursatva}}"
 							],
 							"path": [
 								"User",
-								"Delete"
+								"DeleteUser"
 							]
 						}
 					}
@@ -831,12 +723,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{aayursatva}}/MenuManager",
+									"raw": "{{aayursatva}}/Menu/getallmenu",
 									"host": [
 										"{{aayursatva}}"
 									],
 									"path": [
-										"MenuManager"
+										"Menu",
+										"getallmenu"
 									]
 								}
 							}
@@ -856,12 +749,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{aayursatva}}/MenuManager",
+									"raw": "{{aayursatva}}/Menu/Addmenu",
 									"host": [
 										"{{aayursatva}}"
 									],
 									"path": [
-										"MenuManager"
+										"Menu",
+										"Addmenu"
 									]
 								}
 							}
@@ -881,13 +775,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{aayursatva}}/MenuManager/Delete",
+									"raw": "{{aayursatva}}/Menu/Deletemenu",
 									"host": [
 										"{{aayursatva}}"
 									],
 									"path": [
-										"MenuManager",
-										"Delete"
+										"Menu",
+										"Deletemenu"
 									]
 								}
 							}

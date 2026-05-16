@@ -16,9 +16,8 @@ namespace AayurSatva.Controllers
             _context = context;
         }
 
-        // GET: api/User
-        // GET: api/User
-        [HttpGet]
+        // GET: api/User/GetAllUsers
+        [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetUsers([FromQuery] string? userId, [FromQuery] string? ruserId)
         {
             if (!string.IsNullOrEmpty(userId) || !string.IsNullOrEmpty(ruserId))
@@ -90,8 +89,8 @@ namespace AayurSatva.Controllers
             }));
         }
 
-        // POST: api/User
-        [HttpPost]
+        // POST: api/User/AddUser
+        [HttpPost("AddUser")]
         public async Task<IActionResult> AddUpdateUser([FromBody] AddUserRequest request)
         {
             var userId = 0;
@@ -191,8 +190,8 @@ namespace AayurSatva.Controllers
             });
         }
 
-        // POST: api/User/Delete
-        [HttpPost("Delete")]
+        // POST: api/User/DeleteUser
+        [HttpPost("DeleteUser")]
         public async Task<IActionResult> DeleteUser([FromBody] DeleteUserRequest request)
         {
             var idStr = new string(request.Id.Where(char.IsDigit).ToArray());

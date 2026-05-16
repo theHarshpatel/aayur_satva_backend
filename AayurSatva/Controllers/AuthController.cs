@@ -186,30 +186,6 @@ namespace AayurSatva.Controllers
             return Ok(new { company = company.CoName, year = year.YearName });
         }
 
-        // GET: api/Auth/unauthorize-user
-        [HttpGet("unauthorize-user")]
-        public async Task<IActionResult> GetUnauthorizeUsers()
-        {
-            var users = await _context.Users
-                .Where(u => u.IsActive == false)
-                .ToListAsync();
-
-            return Ok(users);
-        }
-
-        // POST: api/Auth/authorize
-        [HttpPost("authorize")]
-        public async Task<IActionResult> Authorize([FromBody] AuthorizeRequest request)
-        {
-            var user = await _context.Users.FindAsync(request.UserId);
-            if (user == null)
-                return NotFound(new { message = "User not found!" });
-
-            user.IsActive = request.IsAccess;
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "User authorization updated!", userId = user.UserId, isActive = user.IsActive });
-        }
     }
 
     public class LoginRequest
@@ -241,9 +217,4 @@ namespace AayurSatva.Controllers
         public string Password { get; set; } = string.Empty;
     }
 
-    public class AuthorizeRequest
-    {
-        public int UserId { get; set; }
-        public bool IsAccess { get; set; }
-    }
 }

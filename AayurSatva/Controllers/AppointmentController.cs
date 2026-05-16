@@ -16,8 +16,8 @@ namespace AayurSatva.Controllers
             _context = context;
         }
 
-        // GET: api/Appointment
-        [HttpGet]
+        // GET: api/Appointment/GetAllAppointment
+        [HttpGet("GetAllAppointment")]
         public async Task<IActionResult> GetAllAppointments([FromQuery] string? coId, [FromQuery] string? yearId)
         {
             var query = _context.Appointments.AsQueryable();
@@ -45,8 +45,8 @@ namespace AayurSatva.Controllers
             }));
         }
 
-        // POST: api/Appointment
-        [HttpPost]
+        // POST: api/Appointment/AddAppointment
+        [HttpPost("AddAppointment")]
         public async Task<IActionResult> AddUpdateAppointment([FromBody] AddAppointmentRequest request)
         {
             var appointmentId = 0;
@@ -115,8 +115,8 @@ namespace AayurSatva.Controllers
             });
         }
 
-        // POST: api/Appointment/Delete
-        [HttpPost("Delete")]
+        // POST: api/Appointment/DeleteAppointment
+        [HttpPost("DeleteAppointment")]
         public async Task<IActionResult> DeleteAppointment([FromBody] DeleteAppointmentRequest request)
         {
             var idStr = new string(request.Id.Where(char.IsDigit).ToArray());

@@ -106,8 +106,8 @@ namespace AayurSatva.Controllers
 
 
 
-        // POST: api/AddMaster
-        [HttpPost("/api/AddMaster")]
+        // POST: api/Master/AddMaster
+        [HttpPost("AddMaster")]
         public async Task<IActionResult> AddMaster([FromBody] AddMasterRequest request)
         {
             if (!string.IsNullOrEmpty(request.CoName) || request.CoId != null)
@@ -189,8 +189,8 @@ namespace AayurSatva.Controllers
             return BadRequest(new { message = "Invalid request" });
         }
 
-        // POST: api/DeleteMaster
-        [HttpPost("/api/DeleteMaster")]
+        // POST: api/Master/DeleteMaster
+        [HttpPost("DeleteMaster")]
         public async Task<IActionResult> DeleteMaster([FromBody] DeleteMasterRequest request)
         {
             if (request.Id.StartsWith("C"))

@@ -16,8 +16,8 @@ namespace AayurSatva.Controllers
             _context = context;
         }
 
-        // GET: api/Billing
-        [HttpGet]
+        // GET: api/Billing/GetAllBill
+        [HttpGet("GetAllBill")]
         public async Task<IActionResult> GetAllBills([FromQuery] string? coId, [FromQuery] string? yearId)
         {
             var query = _context.Billings.AsQueryable();
@@ -73,8 +73,8 @@ namespace AayurSatva.Controllers
             }));
         }
 
-        // POST: api/Billing
-        [HttpPost]
+        // POST: api/Billing/AddBill
+        [HttpPost("AddBill")]
         public async Task<IActionResult> AddUpdateBill([FromBody] AddBillingRequest request)
         {
             var billingId = 0;
@@ -134,8 +134,8 @@ namespace AayurSatva.Controllers
             });
         }
 
-        // POST: api/Billing/Delete
-        [HttpPost("Delete")]
+        // POST: api/Billing/DeleteBill
+        [HttpPost("DeleteBill")]
         public async Task<IActionResult> DeleteBill([FromBody] DeleteBillingRequest request)
         {
             var idStr = new string(request.Id.Where(char.IsDigit).ToArray());
