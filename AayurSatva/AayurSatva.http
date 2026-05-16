@@ -1,0 +1,6 @@
+@aayursatva = http://localhost:5066/api
+
+GET {{aayursatva}}/weatherforecast/
+Accept: application/json
+
+###
